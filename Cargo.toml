@@ -3,4 +3,26 @@ name = "fisher-core"
 version = "0.1.0"
 edition = "2024"
 
+[[bin]]
+name = "fisher-core-server"
+path = "src/server.rs"
+
+[[bin]]
+name = "fisher-core-client"
+path = "src/client.rs"
+
 [dependencies]
+tonic = "*"
+prost = "0.13"
+tokio = { version = "1.0", features = ["macros", "rt-multi-thread"] }
+serenity = "0.12"
+config = "0.15.11"
+serde = { version = "1.0", features = ["derive"] }
+dotenvy = { version = "0.15.7", optional = true }
+tracing-subscriber = { version = "0.3.19", optional = true }
+
+[build-dependencies]
+tonic-build = "*"
+
+[features]
+default = ["dotenvy", "tracing-subscriber"]
